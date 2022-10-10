@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 const app = express();
 
+
 mongoose
   .connect(
     "mongodb+srv://admin:Sunaina1234@cluster0.ov3kqxg.mongodb.net/?retryWrites=true&w=majority"
