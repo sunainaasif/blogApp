@@ -1,10 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
+import blogRouter from "./routes/blogRoutes";
 import router from "./routes/userRoutes";
 const app = express();
 
 app.use(express.json())
+
 app.use( "/api/user", router)
+app.use("/api/blog" , blogRouter)
 mongoose
   .connect(
     "mongodb+srv://admin:Sunaina1234@cluster0.ov3kqxg.mongodb.net/?retryWrites=true&w=majority"
