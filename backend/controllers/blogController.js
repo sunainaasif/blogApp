@@ -76,7 +76,7 @@ export const getBlogById = async(req,res,next)=>{
     try {
         blog = await Blogs.findById(blogId)
     } catch (err) {
-        return clg(err)
+        return console.log(err)
     }
 
     if(!blog){
@@ -99,4 +99,18 @@ export const deleteBlog =async(req, res, next) =>{
         return res.status(500).json({message: "Unable To Delete"})
     }
     return res.status(200).json({message: "Blog deleted successfully"})
+}
+
+export const getBlogsByUserId = async(req, res, next)=>{
+const userId = req.params.id;
+let userBlogs;
+try {
+    userBlogs = await User.findById(userId).populate("blogs")
+} catch (err) {
+    return console.log(err)
+}
+if(!userBlogs){
+    return res.status(404).json({message: "No blog found"})
+}
+return res.status(200).json({blogs: userBlogs})
 }
